@@ -1,0 +1,11 @@
+QMainWindow
+{
+    background-color: #535c70;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+QPushButton
+{
+    background-color: #61f22c;
+}
