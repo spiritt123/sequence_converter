@@ -63,6 +63,7 @@ bool isContains(const std::unordered_map<std::string, Rule> &r, const std::strin
 void Window::calc()
 {
     std::string buffer = _pointer;
+    
     buffer[0] = _tape[_tape_offset + _pointer_offset];
 
     if (!isContains(_rules, buffer))
@@ -98,7 +99,7 @@ void Window::updateTape()
 
     if (_tape_offset <= 0)
     {
-        std::string buffer = _tape.substr(-1 * _tape_offset, _tape.length());
+        std::string buffer = _tape.substr(std::abs(_tape_offset), _tape.length());
         ui->line_tape->setText(buffer.c_str());
     }
     else
@@ -128,6 +129,14 @@ void Window::on_button_right_tape_clicked()
 void Window::on_button_right_pointer_clicked()
 {
     ++_pointer_offset;
+    
+    int overflow = _tape.length() - (_tape_offset + _pointer_offset);
+    if (overflow <= 0)
+    {
+        _tape += std::string(std::abs(overflow), '0');
+        updateTape();
+    }
+    
     updatePointer();
 }
     
