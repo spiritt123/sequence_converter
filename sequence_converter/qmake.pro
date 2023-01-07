@@ -19,5 +19,6 @@ HEADERS += include/*.h
 
 FORMS += \
     mainwindow.ui \
-    tm.ui
+    tm.ui \
+    nma.ui
 

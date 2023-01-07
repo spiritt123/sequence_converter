@@ -3,6 +3,7 @@
 #include <QMainWindow>
 
 #include "turing_machine_view.h"
+#include "normal_markov_algorithm_view.h"
 
 namespace Ui
 {
@@ -21,5 +22,6 @@ public slots:
 private:
     Ui::Window *_ui;
     TuringMachineView *_turing_machine_view;
+    NMAView *_nma_view;
 };
 
