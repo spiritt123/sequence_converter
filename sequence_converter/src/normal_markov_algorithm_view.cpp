@@ -9,7 +9,6 @@ NMAView::NMAView(QWidget *parent)
     _nma_view->setupUi(this);
 
     _validREX = QRegExp(".*\\|{0,1}->.*");
-    //_nma_view->line_for_rule->setValidator(new QRegExpValidator(_validREX, this));
     
     _worker_timer = new QTimer();
 
@@ -19,12 +18,14 @@ NMAView::NMAView(QWidget *parent)
 
 void NMAView::on_button_start_clicked()
 {
+    _nma_view->tape->setReadOnly(true);
     _worker_timer->start();
 }
 
 void NMAView::on_button_stop_clicked()
 {
     _worker_timer->stop();
+    _nma_view->tape->setReadOnly(false);
 }
 
 void NMAView::on_button_add_rule_clicked()
@@ -46,11 +47,27 @@ void NMAView::on_button_remove_rule_clicked()
 void NMAView::calc()
 {
     std::string tape = _nma_view->tape->text().toStdString();
-    if (!_nma.calculate(tape))
+    int status = _nma.calculate(tape);
+    if (status != nma::STATUS::Wait)
     {
-        _worker_timer->stop();
+        on_button_stop_clicked();
     }
     _nma_view->tape->setText(tape.c_str());
+    switch (status)
+    {
+    case nma::STATUS::Wait :
+        _nma_view->status_line->setText("Wait");
+        _nma_view->status_line->setStyleSheet("QLineEdit { background: #fdd835;}");
+        break;
+    case nma::STATUS::Success :
+        _nma_view->status_line->setText("Success");
+        _nma_view->status_line->setStyleSheet("QLineEdit { background: #2e7d32;}");
+        break;
+    case nma::STATUS::Error :
+        _nma_view->status_line->setText("Error");
+        _nma_view->status_line->setStyleSheet("QLineEdit { background: #d50000;}");
+        break;
+    }
 }
  
 void NMAView::updateRuleBox()
@@ -60,7 +77,7 @@ void NMAView::updateRuleBox()
     for (const auto& rule : _nma.getRules())
     {
         ++i;
-        if (rule == "") continue;
+        if (rule == " ") continue;
 
         _nma_view->rules_textbox->appendPlainText(QString::number(i) + "> " + QString(rule.c_str()));
     }

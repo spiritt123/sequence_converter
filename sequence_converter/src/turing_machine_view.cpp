@@ -9,7 +9,6 @@ TuringMachineView::TuringMachineView(QWidget *parent)
     _turing_machine_view->setupUi(this);
 
     _validREX = QRegExp(".q\\d{1,3}->.q\\d{1,3}[L|S|R]");
-    //_turing_machine_view->line_for_rule->setValidator(new QRegExpValidator(_validREX, this));
     
     _tape_offset = 0;
     _pointer_offset = 0;

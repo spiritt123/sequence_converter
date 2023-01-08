@@ -5,7 +5,7 @@
 
 NMA::NMA()
 {
-    _rules.resize(100, "");
+    _rules.resize(100, " ");
 }
 
 NMA::~NMA() {}
@@ -13,7 +13,7 @@ NMA::~NMA() {}
 void NMA::addRule(uint32_t number_of_rule, const std::string& rule)
 {
     --number_of_rule; // correct index user->programm
-    if (_rules[number_of_rule] == "")
+    if (_rules[number_of_rule] == " ")
     {
         _rules[number_of_rule] = rule;
     }
@@ -33,16 +33,16 @@ const std::vector<std::string>& NMA::getRules() const
     return _rules;
 }
 
-bool NMA::calculate(std::string& tape)
+nma::STATUS NMA::calculate(std::string& tape)
 {
     std::string buffer;
-    bool status = true;
+    nma::STATUS status = nma::STATUS::Wait;
     for (const auto& rule : _rules)
     {
         buffer = rule.substr(0, rule.find("->"));
         if (buffer.back() == '|')
         {
-            status = false;
+            status = nma::STATUS::Success;
             buffer.pop_back();
         }
         
@@ -53,6 +53,6 @@ bool NMA::calculate(std::string& tape)
             return status;
         }
     }
-    return (status = false);
+    return (status = nma::STATUS::Error);
 }
 

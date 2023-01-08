@@ -37,5 +37,6 @@ private:
     Ui::NMAView *_nma_view;
     NMA _nma;
     QRegExp _validREX;
+
 };
 
