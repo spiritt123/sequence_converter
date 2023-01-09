@@ -37,9 +37,11 @@ nma::STATUS NMA::calculate(std::string& tape)
 {
     std::string buffer;
     nma::STATUS status = nma::STATUS::Wait;
-    for (const auto& rule : _rules)
+    for (int i = 0; i < _rules.size(); ++i)
+//    for (const auto& rule : _rules)
     {
-        buffer = rule.substr(0, rule.find("->"));
+        status = nma::STATUS::Wait;
+        buffer = _rules[i].substr(0, _rules[i].find("->"));
         if (buffer.back() == '|')
         {
             status = nma::STATUS::Success;
@@ -48,7 +50,7 @@ nma::STATUS NMA::calculate(std::string& tape)
         
         if (tape.find(buffer) != std::string::npos)
         {
-            std::string replace_str = rule.substr(rule.find(">") + 1, rule.length() - rule.find(">"));
+            std::string replace_str = _rules[i].substr(_rules[i].find(">") + 1, _rules[i].length() - _rules[i].find(">"));
             tape.replace(tape.find(buffer), buffer.size(), replace_str);
             return status;
         }

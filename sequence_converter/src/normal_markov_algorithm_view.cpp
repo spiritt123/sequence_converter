@@ -14,6 +14,7 @@ NMAView::NMAView(QWidget *parent)
 
     _worker_timer->setInterval(500);
     connect(_worker_timer, SIGNAL(timeout()), this,  SLOT(calc()));
+    connect(_nma_view->line_for_rule, SIGNAL(returnPressed()), SLOT(on_button_add_rule_clicked()));
 }
 
 void NMAView::on_button_start_clicked()
