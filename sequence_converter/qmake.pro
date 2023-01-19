@@ -17,8 +17,5 @@ SOURCES += src/*.cpp
 
 HEADERS += include/*.h
 
-FORMS += \
-    mainwindow.ui \
-    tm.ui \
-    nma.ui
+FORMS += forms/*.ui
 

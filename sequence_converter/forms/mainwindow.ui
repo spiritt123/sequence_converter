@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
-    <height>376</height>
+    <width>638</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -23,35 +23,17 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <family>Noto Rashi Hebrew</family>
+       </font>
+      </property>
       <property name="cursor">
        <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>-1</number>
       </property>
-      <widget class="QWidget" name="tab_1">
-       <attribute name="title">
-        <string>Turing machine</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <layout class="QVBoxLayout" name="layoutTuringMachine"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <property name="cursor">
-        <cursorShape>ArrowCursor</cursorShape>
-       </property>
-       <attribute name="title">
-        <string>The normal Markov algorithm</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <layout class="QVBoxLayout" name="layoutNMA"/>
-        </item>
-       </layout>
-      </widget>
      </widget>
     </item>
    </layout>

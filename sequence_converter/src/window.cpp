@@ -1,6 +1,9 @@
 #include "window.h"
 #include "ui_mainwindow.h"
 
+#include "brainfuck_view.h"
+#include "turing_machine_view.h"
+#include "normal_markov_algorithm_view.h"
 
 Window::Window(QMainWindow *parent) 
     : QMainWindow(parent)
@@ -8,19 +11,14 @@ Window::Window(QMainWindow *parent)
 {
     _ui->setupUi(this);
     
-    _turing_machine_view = new TuringMachineView(this);
-    _ui->layoutTuringMachine->addWidget(_turing_machine_view);
-    _turing_machine_view->show();
+    _ui->tabWidget->addTab(new TuringMachineView(this), "Turing Machine");
+    _ui->tabWidget->addTab(new NMAView(this), "Normal Markov algorithm");
+    _ui->tabWidget->addTab(new BrainfuckView(this), "Brainfuck");
     
-    _nma_view = new NMAView(this);
-    _ui->layoutNMA->addWidget(_nma_view);
-    _nma_view->show();
 }
 
 Window::~Window()
 {
-    delete _turing_machine_view;
-    delete _nma_view;
     delete _ui;
 }
 

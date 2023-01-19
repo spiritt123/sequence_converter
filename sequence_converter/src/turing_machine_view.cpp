@@ -152,6 +152,7 @@ void TuringMachineView::updateRuleBox()
 
 TuringMachineView::~TuringMachineView()
 {
+    delete _worker_timer;
     delete _turing_machine_view;
 }
 

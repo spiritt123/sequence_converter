@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QString>
 #include <QTimer>
 #include <QRegExpValidator>

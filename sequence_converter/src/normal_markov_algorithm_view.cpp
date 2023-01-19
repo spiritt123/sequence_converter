@@ -89,6 +89,7 @@ void NMAView::updateRuleBox()
 
 NMAView::~NMAView()
 {
+    delete _worker_timer;
     delete _nma_view;
 }
 
