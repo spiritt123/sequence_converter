@@ -14,7 +14,7 @@ BrainfuckView::BrainfuckView(QWidget *parent)
     _worker_timer = new QTimer();
     //_brainfuck_view->code->setValidator(new QRegExpValidator(_validREX, this));
 
-    _worker_timer->setInterval(100);
+    _worker_timer->setInterval(10);
     connect(_worker_timer, SIGNAL(timeout()), this,  SLOT(calc()));
 }
 
